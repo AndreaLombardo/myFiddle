@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/stile.css">
+
+	<meta name="description" content="jsFiddle Offline">
+	<meta name="keywords" content="HTML, CSS, JavaScript, myFiddle, jsFiddle, Editor online">
+	<meta name="author" content="Andrea Lombardo">
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/stile.css" />
 
     <script src="js/jquery-1.12.0.min.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -23,22 +28,26 @@
 
             <div class="navbar-form navbar-right">
 
-                <div class="form-inline">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalExtFile"><span class="glyphicon glyphicon-file" ></span>&nbsp;File Esterni</button>
+                    </div>
                     <div class="form-group">
                         <select class="form-control" name="select_tema" id="select_tema"></select>
                     </div>
-                    <div class="form-group" data-toggle="buttons">
+                    
+                    <div class="form-group" data-toggle="buttons" style="display:none">
                         <label class="btn btn-warning active" for="usa_jquery"><span id="jquery_label">jQuery On</span>
-                            <input type="checkbox" id="usa_jquery" autocomplete="off" checked />
+                            <input type="checkbox" id="usa_jquery" name="usa_jquery" checked="checked"  />
                         </label>
-                    </div> 
-
+                    </div>
+                    
                     <div class="form-group">
                         <a href="http://adf.ly/12267939/myfiddle-git" role="button" class="btn btn-default" target="_blank">
                             <span class="glyphicon glyphicon-bookmark"></span>&nbsp;Git
                         </a>
                     </div> 
-                                       
+                                    
                 </form>
 
             </div>
@@ -67,7 +76,61 @@
         </div>
     </div>
 
-    <script src="js/myfiddle.js"></script>
+    <!--Modal per inclusione file esterni-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalExtFile">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Aggiungi file esterni</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">File locale?</label>
+                            <div class="col-sm-4">
+                                <input type="checkbox" id="carica_lista_locali" />
+                            </div>
+                            <div class="col-sm-5">
+                                <label class="control-label">Tipo</label>
+                                <input type="radio" value="css" name="tipo_file_ext" />&nbsp;CSS
+                                <input type="radio" value="js" name="tipo_file_ext" />&nbsp;JS
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="select_preset" class="col-sm-3 control-label">Preset</label>
+                            <div class="col-sm-9"><select id="select_preset" class="form-control" disabled="disabled"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="custom_url" class="col-sm-3 control-label">Custom</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="custom_url" name="custom_url" class="form-control" placeholder="http://www.urlfile.da/includere.ext" />
+                                <input type="hidden" id="custom_url_label" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12 text-right">
+                                <button type="button" class="btn btn-sm btn-success" id="aggiungi_ext"><span class="glyphicon glyphicon-plus"></span>&nbsp;Aggiugni</button>
+                            </div>
+                        </div>
+                    </form>
+                    <hr />
+                    <!--Container gi� presenti-->
+                    <ul id="lista_file_ext">
+
+                    </ul>
+                    <!--Fine Container gi� presenti-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fine Modal-->
+
+	<script src="js/myfiddle-repo.js"></script>
+    <script src="js/myfiddle-common.js"></script>
+    <script src="js/myfiddle-editor.js"></script>
     <script type="text/javascript">
         $(document).on('ready', function () {
             inizializzaPagina();
